@@ -1,0 +1,1 @@
+ mencoder kubik002.dv -o kubik002.dv.x264 -vf harddup,kerndeint,hqdn3d,scale=-10:-1 -of rawvideo -ovc x264 -x264encopts qp=30:ratetol=10:subq=6:partitions=all:me=umh:frameref=5:threads=5 -oac faac -faacopts br=96:object=1:tns:quality=100
