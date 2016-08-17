@@ -1,3 +1,9 @@
 #!/bin/sh
-printf "\e[?2004l"
-exec echo 'printf "\e[?2004l"' | xclip -i
+CMD='printf "\e[?2004l"'
+echo $CMD
+
+#exec command
+$CMD
+
+#copy to x-clipboard
+echo "$CMD" | xclip -i
