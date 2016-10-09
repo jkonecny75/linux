@@ -4,7 +4,7 @@ for FILE in "$@"; do
   target=$(basename "$FILE")
   target=${FILE%.*}.mp3
   echo "Converting \"$FILE\" to \"$target\" ... "
-  ffmpeg -i "$FILE" "$target"
+  ffmpeg -i "$FILE" -aq 2 "$target"
 done
 
 exit 0
