@@ -1,0 +1,60 @@
+" My .vimrc, it is pretty golang specific
+colorscheme elflord
+
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=$GOROOT/misc/vim
+
+" vundle plugins
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'fatih/vim-go'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'Syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'godlygeek/tabular'
+call vundle#end()
+
+" ident by filename
+filetype plugin indent on
+
+" show syntax
+syntax on
+
+" expand tabs, 4 spaces
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set et
+set sw=4
+set softtabstop=4
+set tabstop=4
+set smarttab
+set smartindent
+set autoindent
+
+" set line numbers
+set number
+
+set ignorecase
+set smartcase
+
+" turn off error bells
+set noerrorbells
+set t_vb=
+
+" show tabs as ....>
+set list listchars=tab:>-,trail:.,extends:>
+set errorformat=%m\ in\ %f\ on\ line\ %l
+set comments=s1:/**,mb:*,ex:*/
+
+" YCM broke backspace in the past
+set backspace=indent,eol,start
+
+" use goimports.. go get goimports for this to work
+let g:go_fmt_command = "goimports"
+
+" fmt golang files on the way out
+au FileType go au BufWritePre <buffer> Fmt 
