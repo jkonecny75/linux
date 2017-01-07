@@ -12,7 +12,11 @@ while [ "x$FILE_NAME" != "x" ]; do
 #  avidemux2_gtk --load "$FILE_NAME" --video-codec X264 --output-format AVI --save "$TMP_FILE" --quit
 #  avidemux2_cli --nogui --load "$FILE_NAME" --video-codec Xvid4 --audio-codec AC3 --output-format AVI --save "$TMP_FILE" --quit
 #  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2                  "$TMP_FILE"
-  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2 -vf scale=800:-1 "$TMP_FILE"
+#
+# PC version
+#  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2 -vf scale=800:-1 "$TMP_FILE"
+# Mobile version  
+  ffmpeg -i "$FILE_NAME" -c:v libx264                                      -strict -2 -vf scale=800:-1 "$TMP_FILE"
 
 # Set datetime
   DATETIME=$(stat "${FILE_NAME}" | awk -F ": " 'FNR==6 {print $2}')
