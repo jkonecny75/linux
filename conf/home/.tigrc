@@ -11,3 +11,6 @@ color grep.file                 magenta    default
 #color help-group                magenta    default
 color diff-stat                 magenta    default
 color graph-commit              magenta    default
+
+bind main <Ctrl-R> !git rebase -i %(commit)^
+bind diff <Ctrl-R> !git rebase -i %(commit)^
