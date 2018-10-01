@@ -1,11 +1,25 @@
 #!/bin/sh
 
+#set -x
+
 # Purpose: Pro zmenseni velikosti videa z fotaku (prevod do kodeku X264)
 
 FILE_NAME=$1
 
 while [ "x$FILE_NAME" != "x" ]; do
-  TMP_FILE="$FILE_NAME"-smaller.mp4
+#   TMP_FILE=/mnt/nas/tmp/verca_convert/mobil_verca_fotky/Camera/"$FILE_NAME"
+  TMP_FILE=/mnt/nas/tmp/verca_convert/mobil_verca_sdcard/DCIM/Camera/mobil/"$FILE_NAME"
+#  TMP_FILE="$FILE_NAME"-smaller.mp4
+
+  echo ">>> $FILE_NAME <<<"
+
+# Check resolution
+  video_width=$(ffmpeg -i "$FILE_NAME" -hide_banner 2>&1 | grep Video: | grep -Po '\d{3,5}x\d{3,5}' | cut -d'x' -f1)
+  if [ -z "$video_width" ] || [ $video_width -le 800 ]; then
+    shift
+    FILE_NAME=$1
+    continue
+  fi
 
 # Konverze
 #  TMP_FILE="/tmp/$FILE_NAME" 
@@ -14,9 +28,9 @@ while [ "x$FILE_NAME" != "x" ]; do
 #  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2                  "$TMP_FILE"
 #
 # PC version
-#  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2 -vf scale=800:-1 "$TMP_FILE"
+#  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2 -vf scale=800:-2 "$TMP_FILE" -hide_banner
 # Mobile version  
-  ffmpeg -i "$FILE_NAME" -c:v libx264                                      -strict -2 -vf scale=800:-1 "$TMP_FILE"
+  ffmpeg -i "$FILE_NAME" -c:v libx264                                      -strict -2 -vf scale=800:-2 "$TMP_FILE" -hide_banner
 
 # Set datetime
   DATETIME=$(stat "${FILE_NAME}" | awk -F ": " 'FNR==6 {print $2}')
