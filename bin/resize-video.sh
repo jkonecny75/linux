@@ -26,6 +26,24 @@ while [ "x$FILE_NAME" != "x" ]; do
 #  avidemux2_cli --nogui --load "$FILE_NAME" --video-codec Xvid4 --audio-codec AC3 --output-format AVI --save "$TMP_FILE" --quit
 #  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2                  "$TMP_FILE"
 #
+# Kubik-player version
+#  ffmpeg -i "$FILE_NAME" -c:v mpeg4 -q:v 2 -b:v 1M -maxrate 1M -bufsize 2M -vtag XVID                  "$TMP_FILE" -hide_banner
+#
+# 16:9
+# mencoder "$FILE_NAME" \
+#   -oac mp3lame -lameopts vbr=3 \
+#   -ovc xvid -xvidencopts max_key_interval=25:bitrate=1200:vhq=2:bvhq=1:trellis:hq_ac:chroma_me:chroma_opt:quant_type=mpeg:aspect=16/9:threads=6 \
+#   -vf scale=720:405 \
+#   -o "TMP_FILE"
+#
+# 5:4
+# mencoder "$FILE_NAME" \
+#   -oac mp3lame -lameopts vbr=3 \
+#   -ovc xvid -xvidencopts max_key_interval=25:bitrate=1200:vhq=2:bvhq=1:trellis:hq_ac:chroma_me:chroma_opt:quant_type=mpeg:aspect=5/4:threads=6 \
+#   -vf scale=720:576,harddup \
+#   -o "TMP_FILE"
+#
+#
 # PC version
 #  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2 -vf scale=800:-2 "$TMP_FILE" -hide_banner
 # Mobile version  
