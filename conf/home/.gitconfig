@@ -1,0 +1,22 @@
+[user]
+	email = jaromir.konecny@ysoft.com
+	name = Jaromir Konecny
+[push]
+	default = current
+[core]
+	editor = vim
+[merge]
+	tool = gvimdiff
+[color]
+	ui = yes
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	last = log -p -1 HEAD
+	l =  log --pretty=format:\"%Cgreen%h%Creset %ad %C(cyan)%an%Creset - %s%C(red)%d%Creset\" --graph --date=short
+	la = log --pretty=format:\"%Cgreen%h%Creset %ad %C(cyan)%an%Creset - %s%C(red)%d%Creset\" --graph --date=short --all
+  lu = ls-files --others --exclude-standard
+[cola]
+	spellcheck = false
