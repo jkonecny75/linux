@@ -13,7 +13,7 @@ shift
 DELETE=$1
 shift
 
-if [ -z $TARGET_DIR ]; then
+if [ -z "$TARGET_DIR" ]; then
   echo "usage: $SCRIPT_NAME <source dir> <target dir> [-d] [other params to rsync]"
   exit 1
 fi
@@ -34,4 +34,4 @@ else
   DELETE='-n'
 fi
 
-rsync $DELETE -rvh --delete-before --existing --ignore-existing --exclude '.sync' $@ ${SOURCE_DIR}/ ${TARGET_DIR}
+rsync $DELETE -rvh --delete-before --existing --ignore-existing --exclude '.sync' $@ "${SOURCE_DIR}/" "${TARGET_DIR}"
