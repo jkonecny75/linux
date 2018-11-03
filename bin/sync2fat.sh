@@ -21,9 +21,9 @@ if [ ! -d "${TARGET_DIR}" ]; then
 fi
 
 if [ "$DELETE" = "-d" ]; then
-  DELETE=''
-else
   DELETE='--delete'
+else
+  DELETE=''
 fi
 
 rsync $DELETE -ahv --no-perms --no-owner --no-group $@ . $TARGET_DIR
