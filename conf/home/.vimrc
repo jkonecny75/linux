@@ -3,5 +3,7 @@ set textwidth=80
 set smartindent
 set formatoptions=cronq
 set ignorecase
-colorscheme darkblue
-colorscheme desert
+set smartcase
+colorscheme industry
+" colorscheme darkblue
+" colorscheme desert
