@@ -4,9 +4,9 @@
 
 # Purpose: Pro zmenseni velikosti videa z fotaku (prevod do kodeku X264)
 
+FILE_NAME=$1
 
 while [ "x$FILE_NAME" != "x" ]; do
-  FILE_NAME=$1
 #   TMP_FILE=/mnt/nas/tmp/verca_convert/mobil_verca_fotky/Camera/"$FILE_NAME"
   TMP_FILE=/mnt/nas/tmp/verca_convert/mobil_verca_sdcard/DCIM/Camera/mobil/"$FILE_NAME"
 #  TMP_FILE="$FILE_NAME"-smaller.mp4
@@ -17,6 +17,7 @@ while [ "x$FILE_NAME" != "x" ]; do
   video_width=$(ffmpeg -i "$FILE_NAME" -hide_banner 2>&1 | grep Video: | grep -Po '\d{3,5}x\d{3,5}' | cut -d'x' -f1)
   if [ -z "$video_width" ] || [ $video_width -le 800 ]; then
     shift
+    FILE_NAME=$1
     continue
   fi
 
@@ -56,6 +57,7 @@ while [ "x$FILE_NAME" != "x" ]; do
 #  mv "$TMP_FILE" "${FILE_NAME}-smaller.mp4"
 
   shift
+  FILE_NAME=$1
 done;
 
 exit 0
