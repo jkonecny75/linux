@@ -26,4 +26,4 @@ else
   DELETE=''
 fi
 
-rsync $DELETE -ahv --no-perms --no-owner --no-group $@ . $TARGET_DIR
+rsync $DELETE -ahv --modify-window 1 --no-perms --no-owner --no-group $@ . $TARGET_DIR
