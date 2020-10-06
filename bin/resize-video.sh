@@ -25,8 +25,10 @@ while [ "x$FILE_NAME" != "x" ]; do
 #  TMP_FILE="/tmp/$FILE_NAME" 
 #  avidemux2_gtk --load "$FILE_NAME" --video-codec X264 --output-format AVI --save "$TMP_FILE" --quit
 #  avidemux2_cli --nogui --load "$FILE_NAME" --video-codec Xvid4 --audio-codec AC3 --output-format AVI --save "$TMP_FILE" --quit
-#  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2                  "$TMP_FILE"
-#
+
+# x264
+#  ffmpeg -i "$FILE_NAME" -ss 00:00:19 -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2                  "$TMP_FILE"
+
 # Kubik-player version
   ffmpeg -i "$FILE_NAME" -c:v mpeg4 -q:v 2 -b:v 1M -maxrate 1M -bufsize 2M                             "$TMP_FILE" -hide_banner
 #  ffmpeg -i "$FILE_NAME" -c:v mpeg4 -q:v 2 -b:v 1M -maxrate 1M -bufsize 2M -vtag XVID                  "$TMP_FILE" -hide_banner
