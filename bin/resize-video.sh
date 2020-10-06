@@ -51,7 +51,11 @@ while [ "x$FILE_NAME" != "x" ]; do
 # PC version
 #  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2 -vf scale=800:-2 "$TMP_FILE" -hide_banner
 # Mobile version  
-  ffmpeg -i "$FILE_NAME" -c:v libx264                                      -strict -2 -vf scale=800:-2 "$TMP_FILE" -hide_banner
+#  ffmpeg -i "$FILE_NAME" -c:v libx264                                      -strict -2 -vf scale=800:-2 "$TMP_FILE" -hide_banner
+
+# Slow motion - see https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video
+# ffmpeg -i IMG_0997.MOV -ss 00:00:40 -t 00:00:05 -filter:v "setpts=5.0*PTS" -an IMG_0997-slow-part-1.mp4
+# ffmpeg -i input.mkv -filter:v "minterpolate='mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120'" output.mkv
 
 # Set datetime
   DATETIME=$(stat "${FILE_NAME}" | awk -F ": " 'FNR==6 {print $2}')
