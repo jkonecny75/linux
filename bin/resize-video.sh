@@ -13,7 +13,7 @@ while [ "x$FILE_NAME" != "x" ]; do
 
   echo ">>> $FILE_NAME <<<"
 
-# Check resolution
+# Check resolution (skip width less than 800)
   video_width=$(ffmpeg -i "$FILE_NAME" -hide_banner 2>&1 | grep Video: | grep -Po '\d{3,5}x\d{3,5}' | cut -d'x' -f1)
   if [ -z "$video_width" ] || [ $video_width -le 800 ]; then
     shift
