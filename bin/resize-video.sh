@@ -8,8 +8,8 @@ FILE_NAME=$1
 
 while [ "x$FILE_NAME" != "x" ]; do
 #   TMP_FILE=/mnt/nas/tmp/verca_convert/mobil_verca_fotky/Camera/"$FILE_NAME"
-  TMP_FILE=/mnt/nas/tmp/verca_convert/mobil_verca_sdcard/DCIM/Camera/mobil/"$FILE_NAME"
-#  TMP_FILE="$FILE_NAME"-smaller.mp4
+#  TMP_FILE=/mnt/nas/tmp/verca_convert/mobil_verca_sdcard/DCIM/Camera/mobil/"$FILE_NAME"
+  TMP_FILE="$FILE_NAME"-smaller.mp4
 
   echo ">>> $FILE_NAME <<<"
 
@@ -28,6 +28,7 @@ while [ "x$FILE_NAME" != "x" ]; do
 #  ffmpeg -i "$FILE_NAME" -c:v libx264 -pix_fmt yuv420p -movflags faststart -strict -2                  "$TMP_FILE"
 #
 # Kubik-player version
+  ffmpeg -i "$FILE_NAME" -c:v mpeg4 -q:v 2 -b:v 1M -maxrate 1M -bufsize 2M                             "$TMP_FILE" -hide_banner
 #  ffmpeg -i "$FILE_NAME" -c:v mpeg4 -q:v 2 -b:v 1M -maxrate 1M -bufsize 2M -vtag XVID                  "$TMP_FILE" -hide_banner
 #
 # 16:9
