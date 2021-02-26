@@ -1,3 +1,5 @@
+# https://github.com/jonas/tig/blob/master/tigrc
+
 color "---"                     magenta    default
 color "index "                  magenta    default
 color "diff-tree "              magenta    default
@@ -14,3 +16,6 @@ color graph-commit              magenta    default
 
 bind main <Ctrl-R> !git rebase -i %(commit)^
 bind diff <Ctrl-R> !git rebase -i %(commit)^
+
+bind main P ?git format-patch -1 -N %(commit)
+bind diff P ?git format-patch -1 -N %(commit)
